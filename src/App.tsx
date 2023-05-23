@@ -55,7 +55,7 @@ const App = () => {
         ];
       });
     }
-  }, [message, currentTitle]);
+  }, [message, currentTitle]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const currentChat = previousChats.filter(
     (previousChat) => previousChat.title === currentTitle
