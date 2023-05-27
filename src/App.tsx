@@ -29,7 +29,15 @@ const App = () => {
       const response = await fetch("http://localhost:8000/completions", {
         method: "POST",
         body: JSON.stringify({
-          message: value,
+          messages: [
+            ...previousChats
+              .filter((previousChat) => previousChat.title === currentTitle)
+              .map((previousChat) => ({
+                role: previousChat.role,
+                content: previousChat.content,
+              })),
+            { role: "user", content: value },
+          ],
         }),
         headers: {
           "Content-Type": "application/json",
